@@ -3,7 +3,7 @@
  * @param {number[]} entrance
  * @return {number}
  */
-export function print2d(grid) {
+function print2d(grid) {
   let x = '';
   for (let i = 0; i < grid.length; i++) {
     for (let j = 0; j < grid[i].length; j++) {

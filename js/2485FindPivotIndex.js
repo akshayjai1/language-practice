@@ -1,13 +1,21 @@
 /*
 1 -> 1 options = 1 : 1={(1)1=1(1)} checks = [1] biggest check = 1
 checks = 1(===)
+pivotMap[1]=[1,[1,null,null]]
 
 2 -> -1
 here last check returned equality so we can start with next bigger check, i.e. 2
+2 = no{(1+2)=3 [>] 2=(2)},
+first check return > we can return -1, and store checks
+checks = [2(>)]
+pivotMap[2]= [-1,[null,2,null]]
 
-options 1, 2: 1=no{(1)1 < 3(1 + 2)}, 2=no{(1+2)3 > 2(2)} checks[1,2] biggest check = 2
-3 -> -1 options = 1, 2, 3, 2=no{(1 + 2)3 < 5(2 + 3)}, 3=no{(1 + 2 + 3)6 > 3 (3)} checks = [2,3]
+3 -> -1
+start with last biggest check that returned >, 2,
+2 = {(1 + 2)3 < 5(2 + 3)} ==> No
+3=no{(1 + 2 + 3)6 > 3 (3)} checks = [2,3]
 checks = [2(<),3(>)]
+pivotMap[3]=[-1,[null,3,2]]
 
 4 -> -1
 start with last biggest check = 3, (note 3 returned >)
@@ -16,14 +24,14 @@ biggest check returned less than, so moving ahead checking for 3+1
 4 = no{(1+2+3+4)=10 [>] 4=(4)}
 so we got one less than and one greater than thus we can safely return -1;
 checks = [3(<),4(>)]
+pivotMap = [-1,[null,4,3]]
 
 5 -> -1
 start with last biggest check = 4, template = {() = [] = ()}
 4 =  {(1+2+3+4)=10 [>] 9=(4+5)} ==> No
-next check 5
-5 = {(1+2+3+4+5)=15 [>] =(5)} ==> No
 || one point can be noted since biggest check returned greater than, there is no need to have next check
-* checks = [4(>), 5(>)]
+* checks = [4(>)]
+pivotMap = [-1,[null,4,null]]
 
 6 -> -1
 start with biggest check that returned >, here biggest check should be 4, since it returned >
@@ -147,64 +155,70 @@ function findPivot(n) {
     return sum;
   }
   function getLeftSum(pivot) {
-    if (leftSumMap[pivot]) {
-      return leftSumMap[pivot];
-    } else {
-      return pivot + leftSumMap[pivot - 1];
-    }
+    console.log('getting left sum for pivot =', pivot);
+    console.log(leftSumMap);
+    leftSumMap[pivot] = leftSumMap[pivot] || pivot + leftSumMap[pivot - 1];
+    console.log('returning left', leftSumMap[pivot]);
+    return leftSumMap[pivot];
   }
   function getNextCheckFromPreviousChecks(previousChecks) {
-    let check;
+    // let check;
     const [equality, greaterThan, lessThan] = previousChecks;
-    if (typeof equality === 'number') {
-      check = equality + 1;
-    } else if (greaterThan === 'number') {
-      check = greaterThan;
-    } else if (typeof lessThan === 'number') {
-      check = lessThan + 1;
-    }
+    const check = equality ? equality + 1 : greaterThan || lessThan + 1;
+    console.log('we should check pivot at', check, previousChecks);
     return check;
   }
-  function getPivotAndChecks(check) {
-    if (check === 1) {
-      return [1, [1, null, null]];
-		} else if(check === 2) {
-      return [-1, [1, null, null]];
-		}
+  function getPivotAndChecks(i) {
+    console.log('for i = ', i);
     let pivotChecks = [null, null, null]; // has format of [equality,greaterThan,lessThan]
-    if (check > n) {
-      return [-2, pivotChecks]; // -2 signify stop checking
-    }
+    const [check1, checks] = pivotMap[i - 1];
+    const check = getNextCheckFromPreviousChecks(checks);
     let left = getLeftSum(check);
-    let right = getRightSum(check, n);
+    let right = getRightSum(check, i);
+    console.log('sum', left, right);
     if (left === right) {
-      pivotChecks = [check, null, null];
-      return [check, pivotChecks];
-    } else if (left < right) {
-      pivotChecks = [null, null, check];
-      return [-1, pivotChecks];
+      pivotMap[i] = [check, [check, null, null]];
+    } else if (left > right) {
+      pivotMap[i] = [-1, [null, check, null]];
     } else {
-      pivotChecks = [null, check, null];
-      return [-1, pivotChecks];
+      pivotMap[i] = [-1, [null, check + 1, check]];
     }
+    console.log('pivotMap', i, pivotMap[i][1]);
   }
-	const pivotMap = {1:[1,[1,null,null]]};
-	function getPivotOrContinueChecking(i) {
-		const [val, checks] = getPivotAndChecks(i);;
-		if(val > 0) {
-      return [val,;
-    } else if (val === -2) {
-      return -1;
-    } else {
-      const pivotToCheck = getNextCheckFromPreviousChecks(checks);
-      if (pivotToCheck) return getPivotOrContinueChecking(pivotToCheck);
-      else return -1;
-    }
+  const pivotMap = { 1: [1, [1, null, null]] };
+  for (let i = 2; i <= n; i++) {
+    getPivotAndChecks(i);
   }
-	for(let i = 2;i <= n;i++) {
-		const [currentPivot, lastChecks] = getPivotAndChecks(i - 1);
-    pivotMap[i] = getPivotOrContinueChecking(i-1);
-  }
-  return pivotMap;
+  return pivotMap[n][0];
 }
-console.log('pivot map is', findPivot(2));
+console.log('pivot map is', findPivot(8));
+
+
+/* Note there is a very simple solution for this
+based on this approach
+function pivotIndex(nums: number[]): number {
+    // const runningSum = (a)=>{
+    //     if(!a.length) return [];
+    //     const rsum = [a[0]];
+    //     for(let i = 1; i < a.length; i++){
+    //         rsum[i] = rsum[i - 1] + a[i];
+    //     }
+    //     return rsum;
+    // }
+    const fsum = [0];
+    const revsum = [];
+    revsum[nums.length - 1] = 0;
+    for (let i = 1; i < nums.length ; i++){
+            fsum[i] = fsum[i - 1] + nums[i - 1];
+            revsum[nums.length - i - 1] = revsum[nums.length - i] + nums[nums.length - i];
+    }
+    for (let i = 0; i < nums.length; i++){
+        if(fsum[i]===revsum[i])
+            return i;
+
+    }
+    return -1;
+};
+
+
+*/
