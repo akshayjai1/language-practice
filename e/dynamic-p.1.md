@@ -15,11 +15,8 @@ Day 4
 45. Jump Game II => Array, Dynamic Programming, Greedy | Medium
 
 Day 5
-53. Maximum SubarrayArray
-Divide and Conquer, Dynamic Programming| Medium
-
-918. Maximum Sum Circular SubarrayArray
-Divide and Conquer, Dynamic Programming, Queue
+53. Maximum Subarray => Array Divide and Conquer, Dynamic Programming| Medium
+918. Maximum Sum Circular Subarray => Array Divide and Conquer, Dynamic Programming, Queue
 Monotonic Queue| Medium
 
 Day 6
