@@ -1,0 +1,6 @@
+{
+  "files.autoSave": "afterDelay",
+  "editor.wordWrap": "on",
+  "editor.bracketPairColorization.useIndependentColorPoolPerBracketType": true,
+  "prettier.jsxSingleQuote": true
+}
