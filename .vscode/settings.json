@@ -2,5 +2,12 @@
   "files.autoSave": "afterDelay",
   "editor.wordWrap": "on",
   "editor.bracketPairColorization.useIndependentColorPoolPerBracketType": true,
-  "prettier.jsxSingleQuote": true
+  "prettier.jsxSingleQuote": true,
+  "files.associations": {
+    "*.scss": "scss",
+    "vector": "cpp",
+    "iosfwd": "cpp",
+    "unordered_map": "cpp"
+  },
+  "C_Cpp.intelliSenseEngineFallback": "enabled"
 }

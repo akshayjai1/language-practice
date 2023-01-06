@@ -6,7 +6,7 @@
   "configurations": [
     {
       "type": "java",
-      "name": "Launch DivideNodesInAdjacentBar2493",
+      "name": "java",
       "request": "launch",
       "mainClass": "DivideNodesInAdjacentBar2493",
       "projectName": "language-practice_5e30a6ca"
@@ -14,9 +14,9 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Launch Program",
+      "name": "mjs",
       "skipFiles": ["<node_internals>/**"],
-      "program": "${workspaceFolder}/js/DoesArrayHasSum.js"
+      "program": "${workspaceFolder}/js/944LexicalColumns.mjs"
     }
   ]
 }
