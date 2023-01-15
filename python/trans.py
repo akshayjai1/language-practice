@@ -24,3 +24,17 @@ y = [[4,2,1,0,1,1],[4,2,1,0,2,1]]
 z = k_Transformation(3,2,3,x,2,y)
 print("output is z")
 print(z)
+
+class Base:
+    l=1
+    def __init__(self,a=1):
+        self.a = a
+        self.d = 2
+class Derived(Base):
+    def __init__(self,b=2):
+        # super()
+        # .__init__()
+        self.b = b
+c = Derived()
+print("hello")
+print(c.l,c.b)
