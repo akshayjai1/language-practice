@@ -1,4 +1,3 @@
-
 var name = 'Rohit';
 
 function printC() {
@@ -38,30 +37,3 @@ var person = {
 var c = person.print;
 c()
 
----
-
-function utils() {
-  console.log('do something');
-} - 1
-function Com() {
-  	const [state, setState] = useState();
-  	const fn = useC(utils, [state]); // utils - 1
-		context.Provider value ={s,ss}
-
-
-  useQ((){
-
-              })
-
-    qc = useQueryClient();
-
-  	return (
-      	<Child fn={fn} />
-    )
-}
-  function useC(f,a){
-  	const d = useMemo(() => {
-      return () => f
-    }, a);
-  	return d;
-	}

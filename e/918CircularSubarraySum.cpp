@@ -21,4 +21,19 @@ public:
         return max(straightMaxSum, arraySum - straightMinSum);
     }
 };
-// https://www.youtube.com/watch?v=Q1TYVUEr-wY techdose
+// https://www.youtube.com/watch?v=Q1TYVUEr-wY techdose, algorithm made easy
+/* short version */
+class Solution {
+public:
+    int maxSubarraySumCircular(vector<int>& nums) {
+        int s = 0;int mx = INT_MIN; int mn = INT_MAX; int cmx=0;int cmn = 0;
+        for(auto &a:nums){
+            s+=a;
+            cmx=max(a,cmx+a);mx=max(mx,cmx);
+            cmn=min(cmn+a,a);mn=min(mn,cmn);
+        }
+        if(mx<0) return mx;
+        return max(mx,s-mn);
+    }
+};
+

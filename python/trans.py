@@ -22,8 +22,8 @@ def k_Transformation(n : int, m : int, k : int, grid : List[List[int]], q : int,
 x = [[2,0],[1,0],[0,1]]
 y = [[4,2,1,0,1,1],[4,2,1,0,2,1]]
 z = k_Transformation(3,2,3,x,2,y)
-print("output is z")
-print(z)
+# print("output is z")
+# print(z)
 
 class Base:
     l=1
@@ -36,5 +36,13 @@ class Derived(Base):
         # .__init__()
         self.b = b
 c = Derived()
-print("hello")
-print(c.l,c.b)
+# print("hello")
+# print(c.l,c.b)
+
+def abc():
+    while True:
+        c = 1
+        break;
+    print(c)
+    print('hle')
+abc()

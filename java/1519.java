@@ -38,3 +38,37 @@ class Solution {
         return ans;
     }
 }
+
+
+
+
+
+
+[0,1,1,0,0,0,1,1,1,1,0,0,1]
+
+public getCount(int[] arr) {
+    int l = 0;
+    int r = 0;
+    int count = 0;
+    boolean start = false
+    int i = 0;
+    while(i++ < arr.length) {
+        if(arr[i]){
+            if(!start){
+                start = true;
+                l = i;
+            }
+            r++;
+        } else {
+            if(start){
+                r = i;
+                count = Math.max(count, r - l);
+                start = false;
+            }
+            l = r;
+        }
+    }
+
+}
+
+
