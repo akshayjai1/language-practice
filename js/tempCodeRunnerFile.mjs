@@ -1,2 +1,1 @@
-et v = [1, 2, 3, 45, 6, 7, 7, 89, 0, 2]
-// c
+ (nums1.length + nums2.length > 0
