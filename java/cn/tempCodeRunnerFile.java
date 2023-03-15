@@ -1,0 +1,1 @@
+isRow ? "row " : "column "

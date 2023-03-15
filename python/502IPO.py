@@ -12,3 +12,7 @@ class Solution:
                 break
             w+= -1* heapq.heappop(maxProfit)
         return w
+    def ab(self):
+        print('hello')
+d = Solution()
+d.ab()
