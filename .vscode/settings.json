@@ -9,5 +9,6 @@
     "iosfwd": "cpp",
     "unordered_map": "cpp"
   },
-  "C_Cpp.intelliSenseEngineFallback": "enabled"
+  "C_Cpp.intelliSenseEngineFallback": "enabled",
+  "cSpell.words": ["coeff"]
 }
