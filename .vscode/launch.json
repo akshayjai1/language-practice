@@ -6,13 +6,6 @@
   "configurations": [
     {
       "type": "java",
-      "name": "Solution27Polynomial",
-      "request": "launch",
-      "mainClass": "Solution27Polynomial",
-      "projectName": "language-practice_dcfc60d7"
-    },
-    {
-      "type": "java",
       "name": "java",
       "request": "launch",
       "mainClass": "DivideNodesInAdjacentBar2493",
@@ -23,7 +16,7 @@
       "request": "launch",
       "name": "mjs",
       "skipFiles": ["<node_internals>/**"],
-      "program": "${workspaceFolder}/js/incrementMatrices.mjs"
+      "program": "${workspaceFolder}/js/920MusicPlaylist.mjs"
     }
   ]
 }
